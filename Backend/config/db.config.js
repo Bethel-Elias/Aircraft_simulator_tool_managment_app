@@ -8,6 +8,29 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  socketPath: process.env.DB_SOCKET_PATH
 });
 
-module.exports = pool;
+async function query(sql, params) {
+  const [rows, fields] = await pool.execute(sql, params);
+  return rows;
+}
+
+
+const testConnection = async () => {
+  try {
+    const connection = await pool.getConnection();
+
+    console.log("MySQL database connected successfully");
+
+    connection.release();
+  } catch (error) {
+    console.error("MySQL database connection failed:");
+    console.error(error.message);
+  }
+};
+
+module.exports = {
+  query,
+  testConnection
+};

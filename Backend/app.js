@@ -4,11 +4,17 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 
+const { testConnection } = require("./config/db.config");
+
+const router = require("./Routes");
+
 const app = express();
 
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+
+app.use(router);
 
 app.get("/api/health", (req, res) => {
   res.json({
@@ -17,6 +23,12 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log(`Server running on port ${process.env.PORT || 5000}`);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, async () => {
+  console.log(`Server running on port ${PORT}`);
+
+  await testConnection();
 });
+
+module.exports = app;
