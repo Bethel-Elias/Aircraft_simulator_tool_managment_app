@@ -1,0 +1,182 @@
+.profilePage {
+  width: 100%;
+  min-height: 100%;
+  padding: 28px;
+  box-sizing: border-box;
+  background: #f5f7fb;
+  color: #1e293b;
+}
+
+.pageHeader {
+  margin-bottom: 24px;
+}
+
+.pageHeader h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.pageHeader p {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.profileCard {
+  max-width: 900px;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: #e6f0fa;
+  color: #007a53;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.profileHeading h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #102a43;
+  overflow-wrap: anywhere;
+}
+
+.roleBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #e8f5ee;
+  color: #087443;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.divider {
+  height: 1px;
+  margin: 28px 0;
+  background: #e2e8f0;
+}
+
+.sectionTitle {
+  margin: 0 0 22px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.infoItem {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e8edf4;
+  border-radius: 10px;
+  background: #fbfcfe;
+}
+
+.infoLabel {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoItem p {
+  margin: 0;
+  color: #243b53;
+  font-size: 15px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.activeStatus,
+.inactiveStatus {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.activeStatus {
+  color: #087443;
+  background: #dcfce7;
+}
+
+.inactiveStatus {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+.message {
+  padding: 20px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.errorMessage {
+  padding: 16px 20px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+@media (max-width: 650px) {
+  .profilePage {
+    padding: 18px 14px;
+  }
+
+  .pageHeader h1 {
+    font-size: 24px;
+  }
+
+  .profileCard {
+    padding: 20px 16px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .profileHeading h2 {
+    font-size: 18px;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
