@@ -33,4 +33,5 @@ const testConnection = async () => {
 module.exports = {
   query,
   testConnection
+  
 };
