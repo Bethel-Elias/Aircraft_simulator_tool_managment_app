@@ -1,6 +1,4 @@
 import React from "react";
-import Sidebar from "../Layouts/Sidebar/Sidebar";
-import Navbar from "../Layouts/Navbar/Navbar";
 import {
   Wrench,
   CheckCircle2,
@@ -14,7 +12,6 @@ import {
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 import styles from "./Dashboard.module.css";
-
 
 const statistics = [
   {
@@ -95,7 +92,6 @@ const transactions = [
     simulator: "Q400",
   },
 ];
-
 
 function StatCard({ item }) {
   const Icon = item.icon;
@@ -264,44 +260,38 @@ function RecentTransactions() {
 export default function Dashboard() {
   return (
     <div className={styles.dashboard}>
-      <Sidebar />
-
-      <main className={styles.main}>
-        <Navbar />
-
-        <div className={styles.content}>
-          <div className={styles.pageHeading}>
-            <div>
-              <h1>Dashboard</h1>
-              <p>Simulator Workshop Tool Management System</p>
-            </div>
-
-            <div className={styles.headerDate}>
-              <CalendarClock size={17} />
-              <span>Workshop Overview</span>
-            </div>
+      <div className={styles.content}>
+        <div className={styles.pageHeading}>
+          <div>
+            <h1>Simulator Workshop Tool Management System</h1>
+            <p>Workshop Overview</p>
           </div>
 
-          <section className={styles.statsGrid}>
-            {statistics.map((item) => (
-              <StatCard key={item.label} item={item} />
-            ))}
-          </section>
-
-          <div className={styles.dashboardGrid}>
-            <FleetStatus />
-
-            <div className={styles.rightColumn}>
-              <ToolStatus />
-              <RecentTransactions />
-            </div>
+          <div className={styles.headerDate}>
+            {/* <CalendarClock size={17} /> */}
+            {/* <span>Workshop Overview</span> */}
           </div>
-
-          <footer className={styles.footer}>
-            Ethiopian Airlines · Simulator Workshop Management
-          </footer>
         </div>
-      </main>
+
+        <section className={styles.statsGrid}>
+          {statistics.map((item) => (
+            <StatCard key={item.label} item={item} />
+          ))}
+        </section>
+
+        <div className={styles.dashboardGrid}>
+          <FleetStatus />
+
+          <div className={styles.rightColumn}>
+            <ToolStatus />
+            <RecentTransactions />
+          </div>
+        </div>
+
+        <footer className={styles.footer}>
+            Ethiopian Airlines · Simulator Workshop Tool Management
+          </footer>
+      </div>
     </div>
   );
 }

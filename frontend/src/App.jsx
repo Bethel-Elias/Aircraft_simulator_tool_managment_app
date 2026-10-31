@@ -26,6 +26,7 @@ import Users from "./pages/Users/Users";
 import Settings from "./pages/Settings/Settings";
 import Profile from "./pages/Profile/Profile";
 import Notifications from "./pages/Notifications/Notifications";
+import Layouts from "./components/Layouts/MainLayout/MainLayout";
 
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
@@ -33,6 +34,7 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+      <Layouts>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -54,6 +56,7 @@ function App() {
           <Route path="Notifications" element={<Notifications />} />
           <Route path="*" element={<NavigateToDashboard />} />
         </Routes>
+      </Layouts>
       </BrowserRouter>
     </AuthProvider>
   );

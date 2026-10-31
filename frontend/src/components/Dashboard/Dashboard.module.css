@@ -1,4 +1,8 @@
 
+/* ========================================
+   DASHBOARD BASE
+======================================== */
+
 .dashboard {
   --green: #008348;
   --dark-green: #002c25;
@@ -7,45 +11,107 @@
   --border: #dceaf4;
   --surface: #ffffff;
 
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
   display: flex;
-  min-height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+
   background: #f3f8fc;
   color: var(--navy);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
 
+/* ========================================
+   DASHBOARD CONTENT
+======================================== */
 
-/* STATISTICS CARDS */
+.content {
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 12px 18px 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   PAGE HEADING
+======================================== */
+
+.pageHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.pageHeading h1 {
+  margin: 0;
+  color: #12345a;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.pageHeading p {
+  margin: 4px 0 0;
+  color: #617792;
+  font-size: 13px;
+}
+
+/* ========================================
+   STATISTICS CARDS
+======================================== */
 
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 13px;
-  margin-bottom: 17px;
+  gap: 10px;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 .statCard {
   min-width: 0;
-  min-height: 114px;
+  min-height: 90px;
+  padding: 10px;
+
   display: flex;
   align-items: center;
-  gap: 13px;
-  padding: 16px;
+  gap: 9px;
+
+  box-sizing: border-box;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(27, 70, 105, 0.035);
 }
 
+
+
 .statIcon {
-  width: 39px;
-  height: 39px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
-  border-radius: 11px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 10px;
 }
 
 .green {
@@ -79,42 +145,59 @@
 }
 
 .statInfo {
+  flex: 1;
   min-width: 0;
 }
 
 .statInfo span {
   display: block;
-  font-size: 12px;
-  font-weight: 600;
+  margin-bottom: 7px;
+
   color: #526b86;
-  margin-bottom: 10px;
-  white-space: normal;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  overflow-wrap: anywhere;
 }
 
 .statInfo strong {
   display: block;
   color: #102e53;
-  font-size: 28px;
-  line-height: 1;
-  letter-spacing: -0.6px;
+  font-size: clamp(18px, 1.5vw, 25px);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  overflow-wrap: anywhere;
 }
 
 .statInfo .dangerValue {
   color: #e21e2b;
 }
 
-/* DASHBOARD PANELS */
+/* ========================================
+   MAIN DASHBOARD GRID
+======================================== */
 
 .dashboardGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 12px;
+
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+
   align-items: stretch;
-  gap: 14px;
 }
 
 .panel {
   min-width: 0;
-  padding: 17px;
+  min-height: 0;
+  padding: 12px;
+
+  overflow: hidden;
+  box-sizing: border-box;
+
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 11px;
@@ -122,29 +205,30 @@
 }
 
 .panel h2 {
-  font-size: 19px;
+  margin: 0 0 10px;
   color: #17385e;
-  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 700;
   letter-spacing: -0.3px;
 }
 
-.fleetPanel {
-  min-height: 490px;
-}
+/* ========================================
+   FLEET / MAIN TABLE
+======================================== */
 
-.rightColumn {
-  min-width: 0;
+.fleetPanel {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  min-height: 0;
 }
-
-/* TABLES */
 
 .tableWrapper {
   width: 100%;
-  overflow-x: auto;
-  border: 1px solid #e2edf6;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+
+  overflow: auto;
   border-radius: 7px;
 }
 
@@ -152,15 +236,18 @@
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  font-size: 12px;
   white-space: nowrap;
 }
 
 .table th,
 .table td {
-  padding: 13px 12px;
+  padding: 9px 8px;
+  text-align: left;
+  white-space: nowrap;
+
   border-right: 1px solid #e5eff7;
   border-bottom: 1px solid #e5eff7;
-  font-size: 13px;
 }
 
 .table th:last-child,
@@ -175,12 +262,13 @@
 .table th {
   background: #f8fbfe;
   color: #314d6b;
-  font-weight: 700;
   font-size: 12px;
+  font-weight: 700;
 }
 
 .table td {
   color: #476582;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -188,129 +276,211 @@
   background: #f7fbfe;
 }
 
+/* ========================================
+   OPERATIONAL STATUS
+======================================== */
+
 .operational {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   color: #078b4a;
 }
 
 .statusDot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   flex-shrink: 0;
   border-radius: 50%;
   background: #079b4b;
   box-shadow: 0 0 0 3px #e0f6e9;
 }
 
-/* TOOL STATUS DOUGHNUT CHART */
+/* ========================================
+   RIGHT COLUMN
+======================================== */
+
+.rightColumn {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+
+  min-width: 0;
+  min-height: 0;
+}
+
+.chartPanel,
+.transactionsPanel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
 
 .chartPanel {
-  min-height: 300px;
+  padding: 12px;
 }
+
+/* ========================================
+   CHART LAYOUT
+======================================== */
 
 .chartLayout {
   display: grid;
-  grid-template-columns: minmax(145px, 0.9fr) minmax(190px, 1.1fr);
-  gap: 12px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: center;
+  gap: 8px;
+
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
 }
 
 .chartContainer {
   position: relative;
-  height: 224px;
+  width: 100%;
+  height: clamp(115px, 18vh, 180px);
   min-width: 0;
+  min-height: 0;
 }
 
 .chartCenter {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
+  inset: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+  gap: 5px;
+
   text-align: center;
+  pointer-events: none;
 }
 
 .chartCenter strong {
   color: #102e53;
-  font-size: 25px;
-  letter-spacing: -0.7px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .chartCenter span {
   color: #627a95;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
 }
+
+/* ========================================
+   CHART LEGEND
+======================================== */
 
 .legend {
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  gap: 10px;
+
   min-width: 0;
 }
 
 .legendItem {
   display: grid;
-  grid-template-columns: 12px minmax(0, 1fr) auto;
+  grid-template-columns: 10px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 9px;
+  gap: 7px;
+
+  min-width: 0;
 }
 
 .legendDot {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
   border-radius: 50%;
 }
 
 .legendName {
+  min-width: 0;
   color: #58718d;
-  font-size: 13px;
+  font-size: 11px;
+  overflow-wrap: anywhere;
 }
 
 .legendItem strong {
   color: #385574;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   white-space: nowrap;
 }
 
-/* RECENT TRANSACTIONS */
+/* ========================================
+   RECENT TRANSACTIONS
+======================================== */
 
 .transactionsPanel {
-  padding: 14px 15px;
+  padding: 12px;
 }
 
 .panelHeading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .panelHeading h2 {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .viewAll {
+  flex-shrink: 0;
+  margin-bottom: 10px;
+  padding: 4px 0;
+
   border: none;
   background: transparent;
   color: #087d51;
+
   cursor: pointer;
-  font-weight: 600;
   font-size: 12px;
-  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.viewAll:hover {
+  color: #005c39;
+  text-decoration: underline;
+}
+
+.transactionTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 11px;
+  white-space: nowrap;
 }
 
 .transactionTable th,
 .transactionTable td {
-  padding: 10px 9px;
+  padding: 8px 7px;
+  border-bottom: 1px solid #e5eff7;
+  text-align: left;
   font-size: 11px;
+}
+
+.transactionTable th {
+  background: #f8fbfe;
+  color: #314d6b;
+  font-weight: 700;
+}
+
+.transactionTable td {
+  color: #476582;
+}
+
+.transactionTable tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .transactionType {
@@ -323,183 +493,166 @@
   font-weight: 700;
 }
 
+/* ========================================
+   FOOTER
+======================================== */
+
 .footer {
+  flex-shrink: 0;
+  padding: 2px 0 4px;
+
   color: #8294a8;
-  font-size: 11px;
   text-align: center;
-  padding: 18px 0 7px;
+  font-size: 10px;
 }
 
-/* RESPONSIVE DESIGN */
+/* ========================================
+   MEDIUM DESKTOP SCREENS
+======================================== */
 
-@media (max-width: 1400px) {
-  .sidebar {
-    width: 225px;
-  }
-
+@media (max-width: 1400px) and (min-width: 1001px) {
   .content {
-    padding: 20px 16px 12px;
-  }
-
-  .statsGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .dashboardGrid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .statCard {
-    min-height: 98px;
-  }
-
-  .chartLayout {
-    grid-template-columns: minmax(120px, 0.8fr) minmax(150px, 1.2fr);
-  }
-
-  .legendItem {
-    gap: 6px;
-  }
-}
-
-@media (max-width: 1000px) {
-  .sidebar {
-    width: 200px;
-    padding-inline: 9px;
-  }
-
-  .navItem {
-    padding-inline: 10px;
-    gap: 10px;
-  }
-
-  .dashboardGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .fleetPanel {
-    min-height: auto;
-  }
-
-  .chartPanel {
-    min-height: auto;
-  }
-}
-
-@media (max-width: 650px) {
-  .sidebar {
-    width: 64px;
-    padding: 12px 7px;
-  }
-
-  .brand {
-    min-height: 54px;
-  }
-
-  .brandName,
-  .brandMark,
-  .navItem span,
-  .sidebarFooter div {
-    display: none;
-  }
-
-  .navigation {
+    padding: 10px 12px 5px;
     gap: 8px;
   }
 
-  .navItem {
-    justify-content: center;
-    padding: 0;
-    min-height: 44px;
+
+  .statCard {
+    min-height: 60px;
+    padding: 8px 10px;
   }
 
-  .navItem svg {
-    width: 20px;
-  }
-
-  .sidebarFooter {
-    justify-content: center;
-    padding: 20px 0 0;
-  }
-
-  .sidebarFooter svg {
-    width: 23px;
-  }
-
-  .header {
-    height: 58px;
-    padding: 0 12px;
-  }
-
-  .headerRight {
-    gap: 12px;
-  }
-
-  .profileInfo,
-  .profile > svg:last-child {
-    display: none;
-  }
-
-  .profile > svg:first-child {
+  .statIcon {
     width: 32px;
+    height: 32px;
+  }
+
+  .statInfo span {
+    margin-bottom: 4px;
+  }
+
+  .statInfo strong {
+    font-size: 20px;
+  }
+
+  .dashboardGrid {
+    gap: 8px;
+  }
+
+  .rightColumn {
+    gap: 8px;
+  }
+
+  .panel {
+    padding: 10px;
+  }
+
+  .chartLayout {
+    gap: 5px;
+  }
+
+  .legend {
+    gap: 7px;
+  }
+}
+
+/* ========================================
+   TABLETS AND SMALLER SCREENS
+======================================== */
+
+@media (max-width: 1000px) {
+  .dashboard {
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
   }
 
   .content {
-    padding: 18px 10px;
+    height: auto;
+    min-height: 0;
+    padding: 16px;
+    overflow: visible;
+  }
+
+  .dashboardGrid {
+    grid-template-columns: minmax(0, 1fr);
+    flex: initial;
+  }
+
+  .fleetPanel {
+    min-height: 280px;
+  }
+
+  .rightColumn {
+    grid-template-rows: auto auto;
+  }
+
+  .chartPanel {
+    min-height: 240px;
+  }
+
+  .transactionsPanel {
+    min-height: 220px;
+  }
+
+  .chartContainer {
+    height: 170px;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+  .content {
+    padding: 12px;
+    gap: 10px;
   }
 
   .pageHeading {
     align-items: flex-start;
+    gap: 8px;
   }
 
   .pageHeading h1 {
-    font-size: 25px;
+    font-size: 21px;
   }
 
   .pageHeading p {
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .headerDate {
-    display: none;
+    font-size: 12px;
   }
 
   .statsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 9px;
+    gap: 8px;
   }
 
   .statCard {
-    gap: 9px;
-    padding: 11px 9px;
-    min-height: 85px;
+    min-height: 68px;
+    padding: 9px;
+    gap: 8px;
   }
 
   .statIcon {
-    width: 31px;
-    height: 31px;
-  }
-
-  .statIcon svg {
-    width: 19px;
+    width: 30px;
+    height: 30px;
   }
 
   .statInfo span {
-    font-size: 11px;
-    margin-bottom: 8px;
+    font-size: 10px;
   }
 
   .statInfo strong {
-    font-size: 22px;
+    font-size: 19px;
+  }
+
+  .dashboardGrid {
+    gap: 10px;
   }
 
   .panel {
-    padding: 12px;
-  }
-
-  .panel h2 {
-    font-size: 17px;
+    padding: 10px;
   }
 
   .chartLayout {
@@ -507,20 +660,23 @@
   }
 
   .chartContainer {
-    height: 210px;
+    height: 170px;
   }
 
   .legend {
-    gap: 13px;
-    padding: 0 3px 5px;
+    gap: 10px;
   }
 
-  .legendItem {
-    grid-template-columns: 12px minmax(0, 1fr) auto;
+  .tableWrapper {
+    overflow-x: auto;
   }
 
-  .table th,
-  .table td {
-    padding: 11px 9px;
+  .table,
+  .transactionTable {
+    min-width: 500px;
+  }
+
+  .footer {
+    padding: 8px 0;
   }
 }

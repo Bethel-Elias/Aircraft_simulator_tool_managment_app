@@ -10,6 +10,8 @@ import {
   Settings,
   LogOut,
   CheckCheck,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 
 import styles from "./Navbar.module.css";
@@ -176,13 +178,16 @@ useEffect(() => {
       <button
         type="button"
         className={styles.menuButton}
-        aria-label="Toggle sidebar"
+        aria-label={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
         aria-expanded={sidebarOpen}
         onClick={onMenuClick}
       >
-        <Menu size={23} />
+        {sidebarOpen ? (
+          <PanelLeftClose size={22} strokeWidth={1.8} />
+        ) : (
+          <PanelLeftOpen size={22} strokeWidth={1.8} />
+        )}
       </button>
-
       <div className={styles.headerRight}>
         {/* NOTIFICATIONS */}
         <div className={styles.dropdownWrapper} ref={notificationRef}>
@@ -238,31 +243,29 @@ useEffect(() => {
                       notification.unread ? styles.unread : ""
                     }`}
                     onClick={async () => {
-                      if (notification.unread){
+                      if (notification.unread) {
+                        try {
+                          await api.patch(
+                            `/notifications/${notification.id}/read`
+                          );
 
-                      try {
-                        await api.patch(
-                          `/notifications/${notification.id}/read`
-                        );
-
-                        setNotifications((previous) =>
-                          previous.map((item) =>
-                            item.id === notification.id
-                              ? { ...item, unread: false, is_read: 1 }
-                              : item
-                          )
-                        );
-                      } catch (error) {
-                        console.error(
-                          "Failed to mark notification as read:",
-                          error
-                        );
+                          setNotifications((previous) =>
+                            previous.map((item) =>
+                              item.id === notification.id
+                                ? { ...item, unread: false, is_read: 1 }
+                                : item
+                            )
+                          );
+                        } catch (error) {
+                          console.error(
+                            "Failed to mark notification as read:",
+                            error
+                          );
+                        }
                       }
-                    }
                       setShowNotifications(false);
                       navigate("/notifications");
-                    }
-                  }
+                    }}
                   >
                     <span className={styles.notificationTitle}>
                       {notification.title}
