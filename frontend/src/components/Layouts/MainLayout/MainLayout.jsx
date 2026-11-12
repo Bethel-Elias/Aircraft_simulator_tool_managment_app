@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import styles from "./MainLayout.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
+
 
 export default function MainLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -34,7 +35,7 @@ export default function MainLayout({ children }) {
           onLogout={handleLogout}
         />
 
-        <main className={styles.content}>{children}</main>
+        <main className={styles.content}><Outlet/></main>
       </div>
     </div>
   );

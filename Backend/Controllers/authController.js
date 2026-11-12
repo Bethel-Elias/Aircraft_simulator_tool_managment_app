@@ -25,7 +25,7 @@ async function login(req, res){
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: "Invalid employee ID or password",
+        message: "Invalid employee ID",
       });
     }
 
@@ -34,7 +34,7 @@ async function login(req, res){
     if (!passwordMatches) {
       return res.status(401).json({
         success: false,
-        message: "Invalid employee ID or password",
+        message: "Invalid employee password",
       });
     }
 
@@ -121,10 +121,10 @@ async function changePassword (req, res) {
       });
     }
 
-    if (new_password.length < 12) {
+    if (new_password.length < 8) {
       return res.status(400).json({
         success: false,
-        message: "New password must be at least 12 characters",
+        message: "New password must be at least 8 characters",
       });
     }
 
@@ -153,7 +153,7 @@ async function changePassword (req, res) {
       });
     }
 
-    const newHash = await bcrypt.hash(new_password, 12);
+    const newHash = await bcrypt.hash(new_password, 10);
 
     await authModel.updatePassword(req.user.id, newHash);
 

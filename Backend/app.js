@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const sanitize = require("sanitize").middleware;
 
 const { testConnection } = require("./config/db.config");
+const {verifyEmailConnection} = require("./Utils/email");
 
 const router = require("./Routes");
 
@@ -29,7 +30,7 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
-
+  verifyEmailConnection();
   await testConnection();
 });
 
