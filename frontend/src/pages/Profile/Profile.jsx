@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import api from "../../services/api";
+import { getProfile } from "../../services/profile";
 import styles from "./Profile.module.css";
 
 export default function Profile() {
@@ -21,13 +21,13 @@ export default function Profile() {
       }
 
       try {
-        const response = await api.get("/auth/me");
+        const response = await getProfile();
 
-        if (!response.data.success) {
+        if (!response.success) {
           throw new Error("Unable to load your profile.");
         }
 
-        const currentUser = response.data.data;
+        const currentUser = response.data;
 
         if (!cancelled) {
           setUser(currentUser);
@@ -38,10 +38,12 @@ export default function Profile() {
           if (err.response?.status === 401) {
             localStorage.removeItem("token");
             localStorage.removeItem("user");
+
             setError("Your session has expired. Please log in again.");
           } else {
             setError(
               err.response?.data?.message ||
+                err.message ||
                 "Failed to load your profile. Please try again."
             );
           }
@@ -93,6 +95,7 @@ export default function Profile() {
 
           <div className={styles.profileHeading}>
             <h2>{user?.full_name || "Not available"}</h2>
+
             <span className={styles.roleBadge}>
               {user?.role?.replace(/_/g, " ") || "User"}
             </span>
@@ -126,6 +129,7 @@ export default function Profile() {
 
           <div className={styles.infoItem}>
             <span className={styles.infoLabel}>Account Status</span>
+
             <p>
               <span
                 className={

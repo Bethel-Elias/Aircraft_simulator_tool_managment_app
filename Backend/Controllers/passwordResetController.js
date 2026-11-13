@@ -84,10 +84,10 @@ exports.resetPassword = async (req, res) => {
       });
     }
 
-    if (newPassword.length < 12) {
+    if (newPassword.length < 8) {
       return res.status(400).json({
         success: false,
-        message: "Password must contain at least 12 characters.",
+        message: "Password must contain at least 8 characters.",
       });
     }
 
@@ -112,7 +112,7 @@ exports.resetPassword = async (req, res) => {
     }
 
     // Hash new password
-    const passwordHash = await bcrypt.hash(newPassword, 12);
+    const passwordHash = await bcrypt.hash(newPassword, 8);
 
     // Update password and consume token in one transaction
     const updated = await passwordResetModel.resetPasswordWithToken(

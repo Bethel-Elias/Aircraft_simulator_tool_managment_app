@@ -1,7 +1,8 @@
+
 import React, { useState } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
-import api from "../../services/api";
 import styles from "./ResetPassword.module.css";
+import { resetPassword } from "../../services/resetPassword";
 
 export default function ResetPassword() {
   const [searchParams] = useSearchParams();
@@ -26,8 +27,8 @@ export default function ResetPassword() {
       return;
     }
 
-    if (newPassword.length < 12) {
-      setError("Password must contain at least 12 characters.");
+    if (newPassword.length < 8) {
+      setError("Password must contain at least 8 characters.");
       return;
     }
 
@@ -44,12 +45,9 @@ export default function ResetPassword() {
     try {
       setLoading(true);
 
-      const response = await api.post("/auth/reset-password", {
-        token,
-        newPassword,
-      });
+      const data = await resetPassword(token, newPassword);
 
-      setMessage(response.data.message);
+      setMessage(data.message);
 
       setTimeout(() => {
         navigate("/login", { replace: true });
@@ -82,7 +80,7 @@ export default function ResetPassword() {
             placeholder="Enter new password"
             autoComplete="new-password"
             required
-            minLength={12}
+            minLength={8}
             maxLength={72}
           />
 
@@ -96,7 +94,7 @@ export default function ResetPassword() {
             placeholder="Confirm new password"
             autoComplete="new-password"
             required
-            minLength={12}
+            minLength={8}
             maxLength={72}
           />
 
